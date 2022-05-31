@@ -18,6 +18,7 @@ class LoginUserUseCase @Inject constructor(
             }
 
             addLoggedInEmailToDatastoreUseCase(email)
+            Timber.d("Success!")
             return Result.Success
         } catch (e: Exception) {
             Timber.e("LoginUserUseCase: failed, exception ${e.message}")

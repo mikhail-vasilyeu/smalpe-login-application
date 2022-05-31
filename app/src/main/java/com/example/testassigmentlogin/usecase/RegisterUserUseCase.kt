@@ -9,7 +9,7 @@ class RegisterUserUseCase @Inject constructor(
     private val checkIfUserExistsUseCase: CheckIfUserExistsUseCase
 ) {
 
-    operator fun invoke(email: String, password: String): Result {
+    suspend operator fun invoke(email: String, password: String): Result {
         Timber.d("invoke: $email")
         val userExist = checkIfUserExistsUseCase(email)
         return if (!userExist) {

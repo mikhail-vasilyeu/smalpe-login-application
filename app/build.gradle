@@ -45,13 +45,19 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Datastore
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
     implementation "androidx.datastore:datastore-preferences-core:$datastore_version"
 
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
 
     testImplementation '"junit:junit:$junit_version'
     androidTestImplementation "androidx.test.ext:$junit_test_version"
