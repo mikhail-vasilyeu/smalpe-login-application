@@ -1,7 +1,6 @@
 package com.example.testassigmentlogin.usecase
 
-import com.example.testassigmentlogin.model.domain.User
-import com.example.testassigmentlogin.model.db.dao.UserDao
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginUserUseCase @Inject constructor(
@@ -10,15 +9,16 @@ class LoginUserUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(email: String, password: String) {
+        Timber.d("invoke: $email")
         try {
             val userDto = getUserByEmailUseCase(email)
             if (userDto.password != password) {
-                //TODO: log
+                Timber.e("LoginUserUseCase: failed, passwords do not match")
             }
 
             addLoggedInEmailToDatastoreUseCase(email)
         } catch (e: Exception) {
-            //TODO: log
+            Timber.e("LoginUserUseCase: failed, exception ${e.message}")
         }
     }
 }
