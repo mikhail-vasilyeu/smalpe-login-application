@@ -12,14 +12,5 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class Activity : AppCompatActivity() {
 
-    @Inject
-    lateinit var loginUserUseCase: LoginUserUseCase
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        val email = "test@email.com"
-        val password = "querty123"
-        lifecycleScope.launch { loginUserUseCase(email, password) }
-
-    }
 }
