@@ -15,7 +15,9 @@
         android:theme="@style/Theme.TestAssigmentLogin"
         tools:targetApi="31">
 
-        <activity android:name=".Activity" />
+        <activity
+            android:name=".Activity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
 
         <activity-alias
             android:name="Launcher"

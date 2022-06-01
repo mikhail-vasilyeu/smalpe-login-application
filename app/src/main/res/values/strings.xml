@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestAssigmentLogin</string>
+
+    <string name="login_powered_by_appstand">Powered by Appstand</string>
 </resources>

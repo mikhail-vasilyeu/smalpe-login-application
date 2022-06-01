@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class Activity : AppCompatActivity() {
+class Activity : AppCompatActivity(R.layout.activity) {
 
 
 }
