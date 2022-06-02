@@ -55,8 +55,9 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
 
-    // Lifecycles only (without ViewModel or LiveData)
+    // Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
