@@ -85,7 +85,7 @@
                         android:id="@+id/usernameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="textEmailAddress" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,10 +127,10 @@
                     android:layout_marginBottom="@dimen/dp_8"
                     android:backgroundTint="?attr/colorAccent"
                     android:text="@string/login_login"
-                    app:layout_constraintBottom_toTopOf="@id/loginSignupButton" />
+                    app:layout_constraintBottom_toTopOf="@id/signUpButton" />
 
                 <Button
-                    android:id="@+id/loginSignupButton"
+                    android:id="@+id/signUpButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp_16"
