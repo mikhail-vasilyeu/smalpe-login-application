@@ -2,6 +2,7 @@ package com.example.testassigmentlogin.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testassigmentlogin.usecase.GetUserByEmailUseCase
 import com.example.testassigmentlogin.usecase.LoginUserUseCase
 import com.example.testassigmentlogin.usecase.RegisterUserUseCase
 import com.example.testassigmentlogin.utils.isValidEmail
@@ -12,13 +13,21 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUserUseCase: LoginUserUseCase,
-    private val registerUserUseCase: RegisterUserUseCase
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val getUserByEmailUseCase: GetUserByEmailUseCase
 ) : ViewModel() {
+
+    private val _bottomSheetShow = MutableSharedFlow<Unit>()
+    val bottomSheetShow: Flow<Unit> = _bottomSheetShow
+
+    private val _forgotPasswordGetSuccess = MutableSharedFlow<String>()
+    val forgotPasswordGetSuccess: Flow<String> = _forgotPasswordGetSuccess
 
     private val _registerSuccess = MutableSharedFlow<Unit>()
     val registerSuccess: Flow<Unit> = _registerSuccess
@@ -64,7 +73,10 @@ class LoginViewModel @Inject constructor(
     }
 
     fun forgotPasswordClicked() {
-
+        Timber.d("forgotPasswordClicked()")
+        viewModelScope.launch {
+            _bottomSheetShow.emit(Unit)
+        }
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
@@ -75,5 +87,16 @@ class LoginViewModel @Inject constructor(
 
         return isEmailValid && isPasswordValid
 
+    }
+
+    fun forgotPasswordSubmitClicked(email: String) {
+        viewModelScope.launch {
+            try {
+                val userDto = getUserByEmailUseCase(email)
+                _forgotPasswordGetSuccess.emit(userDto.password)
+            } catch (e: Exception) {
+                _error.emit(Unit)
+            }
+        }
     }
 }
