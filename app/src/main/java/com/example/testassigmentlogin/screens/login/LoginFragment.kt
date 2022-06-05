@@ -1,4 +1,4 @@
-package com.example.testassigmentlogin.screens
+package com.example.testassigmentlogin.screens.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.testassigmentlogin.R
 import com.example.testassigmentlogin.databinding.ForgotPasswordDialogBinding
 import com.example.testassigmentlogin.databinding.FragmentLoginBinding
@@ -104,6 +105,11 @@ class LoginFragment : Fragment() {
                     resources.getString(R.string.login_your_password_is, it),
                     requireContext().getColorByAttribute(com.google.android.material.R.attr.colorOnSecondary)
                 )
+            }.launchIn(this)
+
+
+            viewModel.navigateToApp.onEach {
+                findNavController().navigate(R.id.toLoggedIn)
             }.launchIn(this)
 
         }

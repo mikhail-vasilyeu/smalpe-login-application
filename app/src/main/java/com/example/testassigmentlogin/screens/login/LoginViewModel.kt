@@ -1,4 +1,4 @@
-package com.example.testassigmentlogin.screens
+package com.example.testassigmentlogin.screens.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

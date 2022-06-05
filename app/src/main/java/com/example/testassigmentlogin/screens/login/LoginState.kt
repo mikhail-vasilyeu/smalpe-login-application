@@ -1,4 +1,4 @@
-package com.example.testassigmentlogin.screens
+package com.example.testassigmentlogin.screens.login
 
 data class LoginState(
     val isEmailValid: Boolean = true,
