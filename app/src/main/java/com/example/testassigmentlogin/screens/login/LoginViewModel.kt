@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,7 +65,10 @@ class LoginViewModel @Inject constructor(
             viewModelScope.launch {
                 when (registerUserUseCase(email, password)) {
                     RegisterUserUseCase.Result.Failure -> _error.emit(Unit)
-                    RegisterUserUseCase.Result.Success -> _registerSuccess.emit(Unit)
+                    RegisterUserUseCase.Result.Success -> {
+                        loginUserUseCase(email, password)
+                        _registerSuccess.emit(Unit)
+                    }
                 }
             }
         }
@@ -97,6 +99,12 @@ class LoginViewModel @Inject constructor(
             } catch (e: Exception) {
                 _error.emit(Unit)
             }
+        }
+    }
+
+    fun onRegistrationSnackbarDismissed() {
+        viewModelScope.launch {
+            _navigateToApp.emit(Unit)
         }
     }
 }
