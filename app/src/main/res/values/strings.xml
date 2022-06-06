@@ -18,4 +18,5 @@
     <string name="logged_in_title">Logged in</string>
     <string name="logged_in_logout">Log out</string>
     <string name="logged_in_logout_icon_description">Log out icon</string>
+    <string name="logged_in_welcome">Welcome %1$s!</string>
 </resources>
