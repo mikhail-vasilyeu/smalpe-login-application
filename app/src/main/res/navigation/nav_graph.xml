@@ -19,6 +19,8 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/toLoggedIn"
+            app:popUpTo="@id/loggedInFragment"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/slide_in_top"
             app:exitAnim="@anim/slide_out_top"
             app:destination="@id/loggedInFragment" />

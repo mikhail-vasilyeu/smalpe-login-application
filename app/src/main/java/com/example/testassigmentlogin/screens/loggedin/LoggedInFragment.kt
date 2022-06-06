@@ -37,6 +37,11 @@ class LoggedInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setup()
+        observeViewModel()
+    }
+
+    private fun setup() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logOut -> {
@@ -46,7 +51,9 @@ class LoggedInFragment : Fragment() {
                 else -> false
             }
         }
+    }
 
+    private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.email.onEach {
                 Timber.d(it)
