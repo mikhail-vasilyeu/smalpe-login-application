@@ -3,9 +3,9 @@ package com.example.testassigmentlogin.screens.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testassigmentlogin.usecase.GetForgottenPasswordUseCase
-import com.example.testassigmentlogin.usecase.GetUserByEmailUseCase
 import com.example.testassigmentlogin.usecase.LoginUserUseCase
 import com.example.testassigmentlogin.usecase.RegisterUserUseCase
+import com.example.testassigmentlogin.usecase.Result
 import com.example.testassigmentlogin.utils.isValidEmail
 import com.example.testassigmentlogin.utils.isValidPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -94,11 +94,9 @@ class LoginViewModel @Inject constructor(
 
     fun forgotPasswordSubmitClicked(email: String) {
         viewModelScope.launch {
-            try {
-                val password = getForgottenPasswordUseCase(email)
-                _forgotPasswordGetSuccess.emit(password)
-            } catch (e: Exception) {
-                _error.emit(LoginErrorType.FORGOT_PASSWORD)
+            when (val result = getForgottenPasswordUseCase(email)) {
+                is Result.Success -> _forgotPasswordGetSuccess.emit(result.password)
+                is Result.Failure -> _error.emit(LoginErrorType.FORGOT_PASSWORD)
             }
         }
     }

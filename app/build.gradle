@@ -71,7 +71,7 @@ dependencies {
 
     testImplementation "androidx.arch.core:core-testing:$arch_testing_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutines_test_version"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_version"
     testImplementation "app.cash.turbine:turbine:$turbine_version"
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:$junit_test_version"
